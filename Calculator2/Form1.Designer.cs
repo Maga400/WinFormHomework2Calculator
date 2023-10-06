@@ -311,7 +311,7 @@
             multiplicationButton.Name = "multiplicationButton";
             multiplicationButton.Size = new Size(82, 55);
             multiplicationButton.TabIndex = 15;
-            multiplicationButton.Text = "X";
+            multiplicationButton.Text = "*";
             multiplicationButton.UseVisualStyleBackColor = false;
             multiplicationButton.Click += opertionsEvent;
             // 
