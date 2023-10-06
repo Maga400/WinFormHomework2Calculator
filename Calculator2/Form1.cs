@@ -9,8 +9,7 @@ namespace Calculator2
         bool option = false;
         double result = 0;
         string checkOperator = "";
-        List<string> options = new List<string>();
-        List<double> nums = new List<double>();
+
         private void numsEvent(object sender, EventArgs e)
         {
 
@@ -32,7 +31,7 @@ namespace Calculator2
 
             resultLabel.Text = resultLabel.Text + " " + resultTextBox.Text + " " + newOperator;
 
-            nums.Add(double.Parse(resultTextBox.Text));
+            
 
 
             switch (checkOperator)
@@ -46,7 +45,7 @@ namespace Calculator2
             result = double.Parse(resultTextBox.Text);
             resultTextBox.Text = result.ToString();
             checkOperator = newOperator;
-            options.Add(checkOperator);
+            
         }
 
         private void ceButton_Click(object sender, EventArgs e)
@@ -67,7 +66,7 @@ namespace Calculator2
             resultLabel.Text = "";
             option = false;
 
-            nums.Add(double.Parse(resultTextBox.Text));
+           
             switch (checkOperator)
             {
                 case "+": resultTextBox.Text = (result + double.Parse(resultTextBox.Text)).ToString(); break;
@@ -80,7 +79,8 @@ namespace Calculator2
             resultTextBox.Text = result.ToString();
 
             checkOperator = "";
-            nums.Clear();
+           
+            //finish
         }
 
         private void pointButton_Click(object sender, EventArgs e)
