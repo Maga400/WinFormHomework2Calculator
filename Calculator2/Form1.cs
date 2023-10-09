@@ -1,3 +1,5 @@
+﻿using System.Data;
+
 namespace Calculator2
 {
     public partial class Form1 : Form
@@ -25,27 +27,26 @@ namespace Calculator2
 
         private void opertionsEvent(object sender, EventArgs e)
         {
-            option = true;
+            
             Button button = sender as Button;
+
             string newOperator = button.Text;
 
-            resultLabel.Text = resultLabel.Text + " " + resultTextBox.Text + " " + newOperator;
+            resultLabel.Text += " " + resultTextBox.Text + " " + newOperator;
 
-            
 
+            double operand = Double.Parse(resultTextBox.Text);
 
             switch (checkOperator)
             {
-                case "+": resultTextBox.Text = (result + double.Parse(resultTextBox.Text)).ToString(); break;
-                case "/": resultTextBox.Text = (result / double.Parse(resultTextBox.Text)).ToString(); break;
-                case "*": resultTextBox.Text = (result * double.Parse(resultTextBox.Text)).ToString(); break;
-                case "-": resultTextBox.Text = (result - double.Parse(resultTextBox.Text)).ToString(); break;
+                case "+": result += operand;break;
+                case "/": result /= operand; break;
+                case "*": result *= operand; break;
+                case "-": result -= operand;break;
             }
 
-            result = double.Parse(resultTextBox.Text);
-            resultTextBox.Text = result.ToString();
+            option = true;
             checkOperator = newOperator;
-            
         }
 
         private void ceButton_Click(object sender, EventArgs e)
@@ -63,23 +64,22 @@ namespace Calculator2
         }
         private void equalButton_Click(object sender, EventArgs e)
         {
-            resultLabel.Text = "";
+            resultLabel.Text += resultTextBox.Text;
             option = false;
 
-           
-            switch (checkOperator)
-            {
-                case "+": resultTextBox.Text = (result + double.Parse(resultTextBox.Text)).ToString(); break;
-                case "/": resultTextBox.Text = (result / double.Parse(resultTextBox.Text)).ToString(); break;
-                case "*": resultTextBox.Text = (result * double.Parse(resultTextBox.Text)).ToString(); break;
-                case "-": resultTextBox.Text = (result - double.Parse(resultTextBox.Text)).ToString(); break;
-            }
 
-            result = double.Parse(resultTextBox.Text);
-            resultTextBox.Text = result.ToString();
+            DataTable table = new DataTable();
+            table.Columns.Add("expression", typeof(string), resultLabel.Text);
+            DataRow row = table.NewRow();
+            table.Rows.Add(row);
 
-            checkOperator = "";
-           
+            double result1 = double.Parse((string)row["expression"]);
+            MessageBox.Show(result1.ToString());
+
+            resultLabel.Text = "";
+            resultTextBox.Text = result1.ToString();
+
+
             //finish
         }
 
@@ -101,3 +101,4 @@ namespace Calculator2
         }
     }
 }
+
