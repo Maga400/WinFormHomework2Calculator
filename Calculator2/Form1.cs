@@ -80,7 +80,8 @@ namespace Calculator2
             resultTextBox.Text = result1.ToString();
 
 
-            //finish
+            //finish alll
+            
         }
 
         private void pointButton_Click(object sender, EventArgs e)
